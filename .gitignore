@@ -1,0 +1,124 @@
+# Build outputs
+build/
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.lst
+
+# Compiled executables
+microblaze_v_demo
+hello_world
+timer_test
+
+# Assembly listings
+*.s.lst
+*.c.lst
+
+# Linker outputs
+*.out
+
+# Debug files
+*.gdb
+*.debug
+
+# Core dumps
+core
+core.*
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.#*
+\#*#
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# QEMU related
+qemu-*.log
+
+# Toolchain specific
+*.d
+*.dep
+
+# Object files and libraries
+*.a
+*.la
+*.lo
+*.so
+*.so.*
+*.dylib
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Distribution / packaging
+dist/
+*.tar.gz
+*.zip
+
+# Local configuration
+.env
+local.mk
+config.local
+
+# IDE specific
+.cproject
+.project
+.settings/
+
+# Generated documentation
+doc/html/
+doc/latex/
+*.pdf
+
+# Simulation files
+*.vcd
+*.ghw
+*.fst
+
+# Cache directories
+.cache/
+__pycache__/
+
+# Cache directories
+.cache/
+__pycache__/
+
+# Toolchain build artifacts
+toolchain/riscv-gnu-toolchain/build/
+toolchain/riscv-gnu-toolchain/stamps/
+toolchain/riscv-gnu-toolchain/src/
+toolchain/install/
+
+# QEMU build artifacts
+qemu-microblaze-v/build/
+qemu-microblaze-v/pc-bios/
+qemu-microblaze-v/config-host.mak
+qemu-microblaze-v/config.status
+qemu-microblaze-v/config.log
+qemu-microblaze-v/Makefile
+qemu-microblaze-v/compile_commands.json
+
+# QEMU build artifacts
+qemu-microblaze-v/build/
+qemu-microblaze-v/pc-bios/
+qemu-microblaze-v/tests/
+qemu-microblaze-v/config-host.mak
+qemu-microblaze-v/config.status
+qemu-microblaze-v/qemu-bundle/
+

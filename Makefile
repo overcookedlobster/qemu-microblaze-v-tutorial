@@ -27,9 +27,9 @@ OBJECTS = $(ASM_OBJECTS) $(C_OBJECTS)
 TARGET = $(BUILDDIR)/microblaze_v_demo
 
 # QEMU path (adjust as needed)
-QEMU = ../qemu-microblaze-v/build/qemu-system-riscv32
+QEMU = ./qemu-microblaze-v/build/qemu-system-riscv32
 
-.PHONY: all clean run disasm
+.PHONY: all clean run disasm run-debug debug help
 
 all: $(TARGET)
 
@@ -56,10 +56,40 @@ run: $(TARGET)
 disasm: $(TARGET)
 	$(OBJDUMP) -d $(TARGET)
 
+run-debug: $(TARGET)
+	@echo "Starting QEMU with GDB server..."
+	@echo "Connect with: gdb -x debug_microblaze_v.gdb"
+	$(QEMU) -M amd-microblaze-v-generic \
+		-display none -serial stdio -monitor none \
+		-device loader,addr=0x00000000,file=$(TARGET),cpu-num=0 \
+		-s -S
+
+debug: $(TARGET)
+	@echo "Starting GDB debugging session..."
+	@echo "QEMU should be running with -s -S flags"
+	@if [ -f .gdb_config ]; then \
+		source .gdb_config && $$MICROBLAZE_GDB -x debug_microblaze_v.gdb $(TARGET); \
+	elif command -v riscv64-unknown-elf-gdb >/dev/null 2>&1; then \
+		riscv64-unknown-elf-gdb -x debug_microblaze_v.gdb $(TARGET); \
+	elif command -v gdb-multiarch >/dev/null 2>&1; then \
+		gdb-multiarch -x debug_microblaze_v.gdb $(TARGET); \
+	else \
+		echo "❌ No suitable GDB found. Run: source tools/setup_gdb.sh"; \
+		exit 1; \
+	fi
+
+# Setup GDB environment
+setup-gdb:
+	@echo "Setting up GDB environment..."
+	@bash tools/setup_gdb.sh
+
 help:
 	@echo "Available targets:"
-	@echo "  all     - Build the project"
-	@echo "  clean   - Clean build files"
-	@echo "  run     - Run in QEMU"
-	@echo "  disasm  - Show disassembly"
-	@echo "  help    - Show this help"
+	@echo "  all       - Build the project"
+	@echo "  clean     - Clean build files"
+	@echo "  run       - Run in QEMU"
+	@echo "  run-debug - Run QEMU with GDB server (use -s -S)"
+	@echo "  debug     - Start GDB debugging session"
+	@echo "  setup-gdb - Configure optimal GDB debugger"
+	@echo "  disasm    - Show disassembly"
+	@echo "  help      - Show this help"

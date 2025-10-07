@@ -5,7 +5,7 @@
 ### 1. **Complete QEMU Installation**
 - ✅ QEMU 10.1.50+ built from source with Microblaze-V support
 - ✅ `amd-microblaze-v-generic` machine available and working
-- ✅ Location: `/home/everlobster/microblaze-v/qemu-microblaze-v/build/qemu-system-riscv32`
+- ✅ Location: `./qemu-microblaze-v/build/qemu-system-riscv32`
 
 ### 2. **Complete Tutorial & Documentation**
 - ✅ `MICROBLAZE_V_COMPLETE_TUTORIAL.md` - Comprehensive 500+ line tutorial
@@ -43,20 +43,20 @@ microblaze-v-complete/
 
 ### Quick Start
 ```bash
-cd /home/everlobster/microblaze-v-complete
+cd ./microblaze-v-complete
 
 # Build main demo
 make
 
 # Run main demo
-/home/everlobster/microblaze-v/qemu-microblaze-v/build/qemu-system-riscv32 \
+./qemu-microblaze-v/build/qemu-system-riscv32 \
   -M amd-microblaze-v-generic -display none -serial stdio -monitor none \
   -device loader,addr=0x00000000,file=build/microblaze_v_demo,cpu-num=0
 
 # Build and run examples
 cd examples
 ./build_examples.sh
-/home/everlobster/microblaze-v/qemu-microblaze-v/build/qemu-system-riscv32 \
+./qemu-microblaze-v/build/qemu-system-riscv32 \
   -M amd-microblaze-v-generic -display none -serial stdio -monitor none \
   -device loader,addr=0x00000000,file=hello_world,cpu-num=0
 ```
@@ -156,6 +156,6 @@ Hello, Microblaze-V World!
 
 **AMD Microblaze-V QEMU environment is fully operational and ready for development!**
 
-**Location**: `/home/everlobster/microblaze-v-complete/`
+**Location**: `./microblaze-v-complete/`
 **Status**: ✅ **COMPLETE AND WORKING**
 **Next Action**: Start developing! 🚀
